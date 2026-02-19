@@ -71,6 +71,8 @@ func (a *App) GetFuturesFillHistory(symbol string, productType string) (interfac
  return []interface{}{}, nil
 }
 
+```
+
 ---
 
 ### 2. Flash Close a Position
