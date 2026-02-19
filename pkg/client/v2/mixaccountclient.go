@@ -1,3 +1,5 @@
+// package MixAccountClient
+
 package v2
 
 import (
@@ -51,7 +53,25 @@ func (p *MixAccountClient) SetMarginMode(params map[string]string) (string, erro
 	return resp, err
 }
 
-// position
+// NEW FUNCTIONS
+
+func (p *MixAccountClient) OpenCount(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/mix/account/open-count", params)
+	return resp, err
+}
+
+func (p *MixAccountClient) Bills(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/mix/account/bill", params)
+	return resp, err
+}
+
+func (p *MixAccountClient) SubAccountAssets(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/mix/account/sub-account-assets", params)
+	return resp, err
+}
+
+// POSITTION
+
 func (p *MixAccountClient) SetPositionMode(params map[string]string) (string, error) {
 	postBody, jsonErr := internal.ToJson(params)
 	if jsonErr != nil {

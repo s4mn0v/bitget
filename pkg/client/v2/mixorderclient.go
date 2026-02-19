@@ -14,7 +14,7 @@ func (p *MixOrderClient) Init() *MixOrderClient {
 	return p
 }
 
-// normal order
+// PlaceOrder Function
 func (p *MixOrderClient) PlaceOrder(params map[string]string) (string, error) {
 	postBody, jsonErr := internal.ToJson(params)
 	if jsonErr != nil {
@@ -66,7 +66,7 @@ func (p *MixOrderClient) Fills(params map[string]string) (string, error) {
 	return resp, err
 }
 
-// plan
+// PlacePlanOrder Function
 func (p *MixOrderClient) PlacePlanOrder(params map[string]string) (string, error) {
 	postBody, jsonErr := internal.ToJson(params)
 	if jsonErr != nil {
@@ -95,7 +95,7 @@ func (p *MixOrderClient) OrdersPlanHistory(params map[string]string) (string, er
 	return resp, err
 }
 
-// trader
+// TraderOrderClosePositions Function
 func (p *MixOrderClient) TraderOrderClosePositions(params map[string]string) (string, error) {
 	postBody, jsonErr := internal.ToJson(params)
 	if jsonErr != nil {
@@ -138,3 +138,41 @@ func (p *MixOrderClient) FillHistory(params map[string]string) (string, error) {
 	resp, err := p.BitgetRestClient.DoGet("/api/v2/mix/order/fill-history", params)
 	return resp, err
 }
+
+// NEW FUNCTIONS
+
+func (p *MixOrderClient) ModifyOrder(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/mix/order/modify-order", postBody)
+	return resp, err
+}
+
+func (p *MixOrderClient) FlashClosePositions(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/mix/order/close-positions", postBody)
+	return resp, err
+}
+
+func (p *MixOrderClient) OrderDetail(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/mix/order/detail", params)
+	return resp, err
+}
+
+func (p *MixOrderClient) Reversal(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/mix/order/click-backhand", postBody)
+	return resp, err
+}
+
+func (p *MixOrderClient) ModifyPlanOrder(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/mix/order/modify-plan-order", postBody)
+	return resp, err
+}
+
+func (p *MixOrderClient) PlaceTpslOrder(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/mix/order/place-tpsl-order", postBody)
+	return resp, err
+}
+

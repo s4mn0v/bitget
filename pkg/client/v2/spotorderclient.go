@@ -14,7 +14,7 @@ func (p *SpotOrderClient) Init() *SpotOrderClient {
 	return p
 }
 
-// normal order
+// PlaceOrder Function
 func (p *SpotOrderClient) PlaceOrder(params map[string]string) (string, error) {
 	postBody, jsonErr := internal.ToJson(params)
 	if jsonErr != nil {
@@ -66,7 +66,7 @@ func (p *SpotOrderClient) Fills(params map[string]string) (string, error) {
 	return resp, err
 }
 
-// plan
+// PlacePlanOrder Function
 func (p *SpotOrderClient) PlacePlanOrder(params map[string]string) (string, error) {
 	postBody, jsonErr := internal.ToJson(params)
 	if jsonErr != nil {
@@ -95,7 +95,7 @@ func (p *SpotOrderClient) OrdersPlanHistory(params map[string]string) (string, e
 	return resp, err
 }
 
-// trader
+// TraderOrderCloseTracking Function
 func (p *SpotOrderClient) TraderOrderCloseTracking(params map[string]string) (string, error) {
 	postBody, jsonErr := internal.ToJson(params)
 	if jsonErr != nil {
