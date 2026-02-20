@@ -40,6 +40,24 @@ For the original version, please visit the link below:
 
 ---
 
+# Branch Structure and Module Usage
+
+This repository provides two branches to support different import and module use cases:
+
+- **main branch**
+  - Module name: `github.com/s4mn0v/v3-bitget-sdk-golang`
+  - Intended for external use as a Go module.
+  - Recommended when importing the SDK in your own projects using Go modules.
+
+- **fixed branch**
+  - Module name: `bitget`
+  - All internal imports use the local module name `bitget`.
+  - Intended for local development, internal integration, or when embedding the SDK directly into your project without external module references.
+
+Choose the branch depending on your integration needs. Use `main` for standard Go module usage, or `fixed` for local/internal SDK integration.
+
+---
+
 # Usage examples
 
 ### 1. Get Futures Fill History
