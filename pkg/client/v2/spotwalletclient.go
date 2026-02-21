@@ -41,3 +41,47 @@ func (p *SpotWalletAPI) DepositRecords(params map[string]string) (string, error)
 	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/wallet/deposit-records", params)
 	return resp, err
 }
+
+func (p *SpotWalletAPI) ModifyDepositAccount(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/spot/wallet/modify-deposit-account", postBody)
+	return resp, err
+}
+
+func (p *SpotWalletAPI) TransferCoinInfo(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/wallet/transfer-coin-info", params)
+	return resp, err
+}
+
+func (p *SpotWalletAPI) SubAccountTransfer(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/spot/wallet/subaccount-transfer", postBody)
+	return resp, err
+}
+
+func (p *SpotWalletAPI) SubMainTransferRecords(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/account/sub-main-trans-record", params)
+	return resp, err
+}
+
+func (p *SpotWalletAPI) SwitchBgbDeduct(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/spot/account/switch-deduct", postBody)
+	return resp, err
+}
+
+func (p *SpotWalletAPI) SubAccountDepositAddress(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/wallet/subaccount-deposit-address", params)
+	return resp, err
+}
+
+func (p *SpotWalletAPI) CancelWithdrawal(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/spot/wallet/cancel-withdrawal", postBody)
+	return resp, err
+}
+
+func (p *SpotWalletAPI) SubAccountDepositRecords(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/wallet/subaccount-deposit-records", params)
+	return resp, err
+}

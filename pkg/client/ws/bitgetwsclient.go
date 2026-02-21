@@ -111,3 +111,28 @@ func (p *BitgetWsClient) Close() {
 		p.bitgetBaseWsClient.Close()
 	}
 }
+
+func (p *BitgetWsClient) SendTrade(id string, instType string, instId string, channel string, params interface{}) {
+	type wsTradeArg struct {
+		Id       string      `json:"id"`
+		InstType string      `json:"instType"`
+		InstId   string      `json:"instId"`
+		Channel  string      `json:"channel"`
+		Params   interface{} `json:"params"`
+	}
+
+	arg := wsTradeArg{
+		Id:       id,
+		InstType: strings.ToUpper(instType),
+		InstId:   strings.ToUpper(instId),
+		Channel:  channel,
+		Params:   params,
+	}
+
+	wsBaseReq := model.WsBaseReq{
+		Op:   "trade",
+		Args: []interface{}{arg},
+	}
+
+	p.SendMessageByType(wsBaseReq)
+}

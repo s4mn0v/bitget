@@ -14,7 +14,8 @@ func (p *MixOrderClient) Init() *MixOrderClient {
 	return p
 }
 
-// PlaceOrder Function
+// --- PlaceOrder Function ---
+
 func (p *MixOrderClient) PlaceOrder(params map[string]string) (string, error) {
 	postBody, jsonErr := internal.ToJson(params)
 	if jsonErr != nil {
@@ -66,7 +67,6 @@ func (p *MixOrderClient) Fills(params map[string]string) (string, error) {
 	return resp, err
 }
 
-// PlacePlanOrder Function
 func (p *MixOrderClient) PlacePlanOrder(params map[string]string) (string, error) {
 	postBody, jsonErr := internal.ToJson(params)
 	if jsonErr != nil {
@@ -95,7 +95,6 @@ func (p *MixOrderClient) OrdersPlanHistory(params map[string]string) (string, er
 	return resp, err
 }
 
-// TraderOrderClosePositions Function
 func (p *MixOrderClient) TraderOrderClosePositions(params map[string]string) (string, error) {
 	postBody, jsonErr := internal.ToJson(params)
 	if jsonErr != nil {
@@ -138,8 +137,6 @@ func (p *MixOrderClient) FillHistory(params map[string]string) (string, error) {
 	resp, err := p.BitgetRestClient.DoGet("/api/v2/mix/order/fill-history", params)
 	return resp, err
 }
-
-// NEW FUNCTIONS
 
 func (p *MixOrderClient) ModifyOrder(params map[string]string) (string, error) {
 	postBody, _ := internal.ToJson(params)

@@ -44,3 +44,28 @@ func (p *SpotMarketClient) Candles(params map[string]string) (string, error) {
 	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/market/candles", params)
 	return resp, err
 }
+
+func (p *SpotMarketClient) VipFeeRate() (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/market/vip-fee-rate", internal.NewParams())
+	return resp, err
+}
+
+func (p *SpotMarketClient) MergeDepth(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/market/merge-depth", params)
+	return resp, err
+}
+
+func (p *SpotMarketClient) AuctionInfo(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/market/auction", params)
+	return resp, err
+}
+
+func (p *SpotMarketClient) HistoryCandles(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/market/history-candles", params)
+	return resp, err
+}
+
+func (p *SpotMarketClient) MarketTradesHistory(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/market/fills-history", params)
+	return resp, err
+}

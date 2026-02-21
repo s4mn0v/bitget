@@ -34,3 +34,24 @@ func (p *SpotAccountClient) TransferRecords(params map[string]string) (string, e
 	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/account/transferRecords", params)
 	return resp, err
 }
+
+func (p *SpotAccountClient) SubAccountAssets(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/account/subaccount-assets", params)
+	return resp, err
+}
+
+func (p *SpotAccountClient) BgbDeductInfo() (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/account/deduct-info", internal.NewParams())
+	return resp, err
+}
+
+func (p *SpotAccountClient) UpgradeStatus(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/account/upgrade-status", params)
+	return resp, err
+}
+
+func (p *SpotAccountClient) UpgradeAccount(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/spot/account/upgrade", postBody)
+	return resp, err
+}

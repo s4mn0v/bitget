@@ -95,6 +95,49 @@ func (p *SpotOrderClient) OrdersPlanHistory(params map[string]string) (string, e
 	return resp, err
 }
 
+// CancelReplaceOrder Funtion: Trade Extentions
+func (p *SpotOrderClient) CancelReplaceOrder(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/spot/trade/cancel-replace-order", postBody)
+	return resp, err
+}
+
+func (p *SpotOrderClient) BatchCancelReplaceOrder(params map[string]interface{}) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/spot/trade/batch-cancel-replace-order", postBody)
+	return resp, err
+}
+
+func (p *SpotOrderClient) CancelSymbolOrder(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/spot/trade/cancel-symbol-order", postBody)
+	return resp, err
+}
+
+func (p *SpotOrderClient) OrderInfo(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/trade/orderInfo", params)
+	return resp, err
+}
+
+// --- Plan Oreder Extentions ---
+
+func (p *SpotOrderClient) ModifyPlanOrder(params map[string]string) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/spot/trade/modify-plan-order", postBody)
+	return resp, err
+}
+
+func (p *SpotOrderClient) PlanSubOrder(params map[string]string) (string, error) {
+	resp, err := p.BitgetRestClient.DoGet("/api/v2/spot/trade/plan-sub-order", params)
+	return resp, err
+}
+
+func (p *SpotOrderClient) BatchCancelPlanOrder(params map[string]interface{}) (string, error) {
+	postBody, _ := internal.ToJson(params)
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/spot/trade/batch-cancel-plan-order", postBody)
+	return resp, err
+}
+
 // TraderOrderCloseTracking Function
 func (p *SpotOrderClient) TraderOrderCloseTracking(params map[string]string) (string, error) {
 	postBody, jsonErr := internal.ToJson(params)
