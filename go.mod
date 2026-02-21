@@ -1,4 +1,4 @@
-module bitget
+module github.com/s4mn0v/bitget
 
 go 1.17
 

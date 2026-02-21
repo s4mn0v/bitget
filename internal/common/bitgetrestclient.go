@@ -1,13 +1,15 @@
+// Packege common
 package common
 
 import (
-	"bitget/config"
-	"bitget/constants"
-	"bitget/internal"
 	"io/ioutil"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/s4mn0v/bitget/config"
+	"github.com/s4mn0v/bitget/constants"
+	"github.com/s4mn0v/bitget/internal"
 )
 
 type BitgetRestClient struct {
@@ -33,7 +35,7 @@ func (p *BitgetRestClient) Init() *BitgetRestClient {
 
 func (p *BitgetRestClient) DoPost(uri string, params string) (string, error) {
 	timesStamp := internal.TimesStamp()
-	//body, _ := internal.BuildJsonParams(params)
+	// body, _ := internal.BuildJsonParams(params)
 
 	sign := p.Signer.Sign(constants.POST, uri, params, timesStamp)
 	if constants.RSA == config.SignType {
@@ -49,7 +51,6 @@ func (p *BitgetRestClient) DoPost(uri string, params string) (string, error) {
 		return "", err
 	}
 	response, err := p.HttpClient.Do(request)
-
 	if err != nil {
 		return "", err
 	}
@@ -68,7 +69,7 @@ func (p *BitgetRestClient) DoPost(uri string, params string) (string, error) {
 func (p *BitgetRestClient) DoGet(uri string, params map[string]string) (string, error) {
 	timesStamp := internal.TimesStamp()
 	body := internal.BuildGetParams(params)
-	//fmt.Println(body)
+	// fmt.Println(body)
 
 	sign := p.Signer.Sign(constants.GET, uri, body, timesStamp)
 
@@ -81,7 +82,6 @@ func (p *BitgetRestClient) DoGet(uri string, params map[string]string) (string, 
 	internal.Headers(request, p.ApiKey, timesStamp, sign, p.Passphrase)
 
 	response, err := p.HttpClient.Do(request)
-
 	if err != nil {
 		return "", err
 	}

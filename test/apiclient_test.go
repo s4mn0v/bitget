@@ -1,11 +1,12 @@
 package test
 
 import (
-	"bitget/internal"
-	"bitget/pkg/client"
-	"bitget/pkg/client/v2"
 	"fmt"
 	"testing"
+
+	"github.com/s4mn0v/bitget/internal"
+	"github.com/s4mn0v/bitget/pkg/client"
+	v2 "github.com/s4mn0v/bitget/pkg/client/v2"
 )
 
 func Test_PlaceOrder(t *testing.T) {

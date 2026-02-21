@@ -2,7 +2,7 @@
 package v2
 
 import (
-	"bitget/internal/common"
+	"github.com/s4mn0v/bitget/internal/common"
 )
 
 type MixMarketClient struct {

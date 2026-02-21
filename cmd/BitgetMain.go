@@ -1,9 +1,10 @@
 package main
 
 import (
-	"bitget/internal/model"
-	"bitget/pkg/client/ws"
 	"fmt"
+
+	"github.com/s4mn0v/bitget/internal/model"
+	"github.com/s4mn0v/bitget/pkg/client/ws"
 )
 
 func main() {
@@ -33,5 +34,8 @@ func main() {
 		fmt.Println("appoint:" + message)
 	})
 	fmt.Println("Press ENTER to unsubscribe and stop...")
-	fmt.Scanln()
+	if _, err := fmt.Scanln(); err != nil {
+		fmt.Println("Error reading input:", err)
+		return
+	}
 }

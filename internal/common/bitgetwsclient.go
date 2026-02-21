@@ -1,16 +1,17 @@
 package common
 
 import (
-	"bitget/config"
-	"bitget/constants"
-	"bitget/internal"
-	"bitget/internal/model"
-	"bitget/logging/applogger"
 	"fmt"
-	"github.com/gorilla/websocket"
-	"github.com/robfig/cron"
 	"sync"
 	"time"
+
+	"github.com/gorilla/websocket"
+	"github.com/robfig/cron"
+	"github.com/s4mn0v/bitget/config"
+	"github.com/s4mn0v/bitget/constants"
+	"github.com/s4mn0v/bitget/internal"
+	"github.com/s4mn0v/bitget/internal/model"
+	"github.com/s4mn0v/bitget/logging/applogger"
 )
 
 type BitgetBaseWsClient struct {
@@ -26,7 +27,7 @@ type BitgetBaseWsClient struct {
 	AllSuribe        *model.Set
 	Signer           *Signer
 	ScribeMap        map[model.SubscribeReq]OnReceive
-	isClosed          bool
+	isClosed         bool
 }
 
 func (p *BitgetBaseWsClient) Close() {
@@ -59,7 +60,6 @@ func (p *BitgetBaseWsClient) SetListener(msgListener OnReceive, errorListener On
 }
 
 func (p *BitgetBaseWsClient) Connect() {
-
 	p.tickerLoop()
 	p.ExecuterPing()
 }
@@ -108,6 +108,7 @@ func (p *BitgetBaseWsClient) ExecuterPing() {
 	_ = c.AddFunc("*/15 * * * * *", p.ping)
 	c.Start()
 }
+
 func (p *BitgetBaseWsClient) ping() {
 	if p.isClosed {
 		return
@@ -163,7 +164,6 @@ func (p *BitgetBaseWsClient) disconnectWebSocket() {
 }
 
 func (p *BitgetBaseWsClient) ReadLoop() {
-
 	// Evita que un panic tumbe la app
 	defer func() {
 		if r := recover(); r != nil {
@@ -235,7 +235,6 @@ func (p *BitgetBaseWsClient) ReadLoop() {
 }
 
 func (p *BitgetBaseWsClient) GetListener(argJson interface{}) OnReceive {
-
 	mapData := argJson.(map[string]interface{})
 
 	subscribeReq := model.SubscribeReq{

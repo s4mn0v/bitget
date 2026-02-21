@@ -1,14 +1,14 @@
 package test
 
 import (
-	"bitget/internal/model"
-	"bitget/pkg/client/ws"
 	"fmt"
 	"testing"
+
+	"github.com/s4mn0v/bitget/internal/model"
+	"github.com/s4mn0v/bitget/pkg/client/ws"
 )
 
 func TestBitgetWsClient_New(t *testing.T) {
-
 	client := new(ws.BitgetWsClient).Init(true, func(message string) {
 		fmt.Println("default error:" + message)
 	}, func(message string) {
@@ -35,5 +35,4 @@ func TestBitgetWsClient_New(t *testing.T) {
 		fmt.Println("appoint:" + message)
 	})
 	client.Connect()
-
 }

@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"bitget/constants"
 	"encoding/json"
 	"errors"
 	"net/http"
@@ -9,6 +8,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/s4mn0v/bitget/constants"
 )
 
 func TimesStamp() string {
@@ -69,7 +70,7 @@ func SortParams(params map[string]string) string {
 	sorted := make([]string, len(params))
 	i = 0
 	for _, k := range keys {
-		//sorted[i] = k + "=" + url.QueryEscape(params[k])
+		// sorted[i] = k + "=" + url.QueryEscape(params[k])
 		sorted[i] = k + "=" + params[k]
 		i++
 	}
@@ -77,11 +78,9 @@ func SortParams(params map[string]string) string {
 }
 
 func JSONToMap(str string) map[string]interface{} {
-
 	var tempMap map[string]interface{}
 
 	err := json.Unmarshal([]byte(str), &tempMap)
-
 	if err != nil {
 		panic(err)
 	}

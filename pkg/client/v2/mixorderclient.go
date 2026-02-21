@@ -1,8 +1,8 @@
 package v2
 
 import (
-	"bitget/internal"
-	"bitget/internal/common"
+	"github.com/s4mn0v/bitget/internal"
+	"github.com/s4mn0v/bitget/internal/common"
 )
 
 type MixOrderClient struct {
@@ -175,4 +175,3 @@ func (p *MixOrderClient) PlaceTpslOrder(params map[string]string) (string, error
 	resp, err := p.BitgetRestClient.DoPost("/api/v2/mix/order/place-tpsl-order", postBody)
 	return resp, err
 }
-

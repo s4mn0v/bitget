@@ -1,11 +1,12 @@
 package ws
 
 import (
-	"bitget/constants"
-	"bitget/internal/common"
-	"bitget/internal/model"
-	"bitget/logging/applogger"
 	"strings"
+
+	"github.com/s4mn0v/bitget/constants"
+	"github.com/s4mn0v/bitget/internal/common"
+	"github.com/s4mn0v/bitget/internal/model"
+	"github.com/s4mn0v/bitget/logging/applogger"
 )
 
 type BitgetWsClient struct {
@@ -33,7 +34,6 @@ func (p *BitgetWsClient) Init(needLogin bool, listener common.OnReceive, errorLi
 	}
 
 	return p
-
 }
 
 func (p *BitgetWsClient) Connect() *BitgetWsClient {
@@ -42,7 +42,6 @@ func (p *BitgetWsClient) Connect() *BitgetWsClient {
 }
 
 func (p *BitgetWsClient) UnSubscribe(list []model.SubscribeReq) {
-
 	var args []interface{}
 	for i := 0; i < len(list); i++ {
 		delete(p.bitgetBaseWsClient.ScribeMap, list[i])
@@ -60,7 +59,6 @@ func (p *BitgetWsClient) UnSubscribe(list []model.SubscribeReq) {
 }
 
 func (p *BitgetWsClient) SubscribeDef(list []model.SubscribeReq) {
-
 	var args []interface{}
 	for i := 0; i < len(list); i++ {
 		req := toUpperReq(list[i])
@@ -82,7 +80,6 @@ func toUpperReq(req model.SubscribeReq) model.SubscribeReq {
 }
 
 func (p *BitgetWsClient) Subscribe(list []model.SubscribeReq, listener common.OnReceive) {
-
 	var args []interface{}
 	for i := 0; i < len(list); i++ {
 		req := toUpperReq(list[i])
