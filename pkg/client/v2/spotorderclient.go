@@ -95,7 +95,8 @@ func (p *SpotOrderClient) OrdersPlanHistory(params map[string]string) (string, e
 	return resp, err
 }
 
-// CancelReplaceOrder Funtion: Trade Extentions
+// --- Trade Extentions ---
+
 func (p *SpotOrderClient) CancelReplaceOrder(params map[string]string) (string, error) {
 	postBody, _ := internal.ToJson(params)
 	resp, err := p.BitgetRestClient.DoPost("/api/v2/spot/trade/cancel-replace-order", postBody)
@@ -138,7 +139,6 @@ func (p *SpotOrderClient) BatchCancelPlanOrder(params map[string]interface{}) (s
 	return resp, err
 }
 
-// TraderOrderCloseTracking Function
 func (p *SpotOrderClient) TraderOrderCloseTracking(params map[string]string) (string, error) {
 	postBody, jsonErr := internal.ToJson(params)
 	if jsonErr != nil {
