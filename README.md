@@ -38,6 +38,42 @@ For the original version, please visit the link below:
   > Ref: [Get Fill History](https://www.bitget.com/api-doc/contract/trade/Get-Fill-History), [Get History Position](https://www.bitget.com/api-doc/contract/position/Get-History-Position)
   > Modified Code: `internal/model/history.go`, `pkg/client/v2/mixorderclient.go`, `pkg/client/v2/mixaccountclient.go`
 
+- **Spot Trading, Wallet, and WebSocket Extensions (v2)**
+  - Added multiple new **Spot Account endpoints**:
+    - Sub-account assets, deduct info, upgrade status, and account upgrade.
+    - Modified Code: `pkg/client/v2/spotaccountclient.go`
+
+  - Added new **Spot Market endpoints**:
+    - VIP fee rates, merged depth, auction info, historical candles, and trade history.
+    - Modified Code: `pkg/client/v2/spotmarketclient.go`
+
+  - Added extended **Spot Trading functionality**:
+    - Cancel & Replace Order
+    - Batch Cancel & Replace Orders
+    - Cancel all orders by symbol
+    - Order info lookup
+    - Plan order modification and batch cancel support
+    - Modified Code: `pkg/client/v2/spotorderclient.go`
+
+  - Added new **Spot Wallet and Sub-account operations**:
+    - Modify deposit account
+    - Sub-account transfers and deposit address queries
+    - Transfer coin info
+    - Cancel withdrawal
+    - Sub-account deposit and transfer records
+    - BGB deduct switch support
+    - Modified Code: `pkg/client/v2/spotwalletclient.go`
+
+  - Added **WebSocket trade operation support**
+    - Implemented `SendTrade` method for sending trade operations via WebSocket.
+    - Enables structured trade execution messaging.
+    - Modified Code: `pkg/client/ws/bitgetwsclient.go`
+
+  - Minor cleanup and structural improvements:
+    - Removed redundant comments
+    - Improved function grouping and readability
+    - Modified Code: `pkg/client/v2/mixorderclient.go`
+
 ---
 
 # Branch Structure and Module Usage
@@ -125,4 +161,3 @@ func (a *App) GetMaxOpenSize(symbol string, price string, leverage string) (stri
  return a.mixAccountClient.OpenCount(params)
 }
 ```
-
