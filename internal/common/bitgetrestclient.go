@@ -1,4 +1,4 @@
-// Packege common
+// Package common
 package common
 
 import (
